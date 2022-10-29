@@ -10,6 +10,8 @@ public class GameManager : MonoBehaviour
     public int lives { get; private set; }
     public int coins { get; private set; }
 
+    public string level => world.ToString() + "-" + stage.ToString();
+
     private void Awake() {
         if (Instance != null) {
             DestroyImmediate(gameObject);
@@ -62,7 +64,7 @@ public class GameManager : MonoBehaviour
     public void ResetLevel() {
         lives--;
 
-        if (lives > 0) {
+        if (lives >= 0) {
             LoadLevel(world, stage);
         } else {
             GameOver();
